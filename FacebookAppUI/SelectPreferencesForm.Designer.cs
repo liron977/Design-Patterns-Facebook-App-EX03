@@ -38,8 +38,8 @@ namespace BasicFacebookFeatures
             this.continueButton = new System.Windows.Forms.Button();
             this.ToNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.FromNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.FullRadioButton = new System.Windows.Forms.RadioButton();
-            this.LimitedRadioButton = new System.Windows.Forms.RadioButton();
+            this.comboBoxMatchDeatils = new System.Windows.Forms.ComboBox();
+            this.FormatText = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.ToNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FromNumericUpDown)).BeginInit();
             this.SuspendLayout();
@@ -123,7 +123,7 @@ namespace BasicFacebookFeatures
             this.continueButton.BackColor = System.Drawing.Color.CornflowerBlue;
             this.continueButton.Font = new System.Drawing.Font("Aharoni", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.continueButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.continueButton.Location = new System.Drawing.Point(83, 188);
+            this.continueButton.Location = new System.Drawing.Point(120, 204);
             this.continueButton.Margin = new System.Windows.Forms.Padding(2);
             this.continueButton.Name = "continueButton";
             this.continueButton.Size = new System.Drawing.Size(150, 44);
@@ -178,39 +178,37 @@ namespace BasicFacebookFeatures
             0,
             0});
             // 
-            // FullRadioButton
+            // comboBoxMatchDeatils
             // 
-            this.FullRadioButton.AutoSize = true;
-            this.FullRadioButton.Location = new System.Drawing.Point(12, 166);
-            this.FullRadioButton.Name = "FullRadioButton";
-            this.FullRadioButton.Size = new System.Drawing.Size(77, 17);
-            this.FullRadioButton.TabIndex = 19;
-            this.FullRadioButton.TabStop = true;
-            this.FullRadioButton.Text = "Full deatils ";
-            this.FullRadioButton.UseVisualStyleBackColor = true;
-            this.FullRadioButton.CheckedChanged += new System.EventHandler(this.FullRadioButton_CheckedChanged);
+            this.comboBoxMatchDeatils.FormattingEnabled = true;
+            this.comboBoxMatchDeatils.Items.AddRange(new object[] {
+            "Full deatils",
+            "Limited deatils"});
+            this.comboBoxMatchDeatils.Location = new System.Drawing.Point(0, 178);
+            this.comboBoxMatchDeatils.Name = "comboBoxMatchDeatils";
+            this.comboBoxMatchDeatils.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxMatchDeatils.TabIndex = 21;
+            this.comboBoxMatchDeatils.SelectedIndexChanged += new System.EventHandler(this.comboBoxMatchDeatils_SelectedIndexChanged);
             // 
-            // LimitedRadioButton
+            // FormatText
             // 
-            this.LimitedRadioButton.AutoSize = true;
-            this.LimitedRadioButton.Location = new System.Drawing.Point(114, 166);
-            this.LimitedRadioButton.Name = "LimitedRadioButton";
-            this.LimitedRadioButton.Size = new System.Drawing.Size(94, 17);
-            this.LimitedRadioButton.TabIndex = 20;
-            this.LimitedRadioButton.TabStop = true;
-            this.LimitedRadioButton.Text = "Limited deatils ";
-            this.LimitedRadioButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.LimitedRadioButton.UseVisualStyleBackColor = true;
-            this.LimitedRadioButton.CheckedChanged += new System.EventHandler(this.LimitedRadioButton_CheckedChanged);
+            this.FormatText.AutoSize = true;
+            this.FormatText.Font = new System.Drawing.Font("Aharoni", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.FormatText.Location = new System.Drawing.Point(-3, 161);
+            this.FormatText.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.FormatText.Name = "FormatText";
+            this.FormatText.Size = new System.Drawing.Size(260, 14);
+            this.FormatText.TabIndex = 22;
+            this.FormatText.Text = "Choose a format for the match deatils";
             // 
             // SelectPreferencesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.ClientSize = new System.Drawing.Size(253, 250);
-            this.Controls.Add(this.LimitedRadioButton);
-            this.Controls.Add(this.FullRadioButton);
+            this.ClientSize = new System.Drawing.Size(291, 269);
+            this.Controls.Add(this.FormatText);
+            this.Controls.Add(this.comboBoxMatchDeatils);
             this.Controls.Add(this.FromNumericUpDown);
             this.Controls.Add(this.ToNumericUpDown);
             this.Controls.Add(this.continueButton);
@@ -242,7 +240,7 @@ namespace BasicFacebookFeatures
         private System.Windows.Forms.Button continueButton;
         private System.Windows.Forms.NumericUpDown ToNumericUpDown;
         private System.Windows.Forms.NumericUpDown FromNumericUpDown;
-        private System.Windows.Forms.RadioButton FullRadioButton;
-        private System.Windows.Forms.RadioButton LimitedRadioButton;
+        private System.Windows.Forms.ComboBox comboBoxMatchDeatils;
+        private System.Windows.Forms.Label FormatText;
     }
 }

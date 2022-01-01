@@ -15,7 +15,7 @@ namespace FacebookAppLogic
             int r_CurrentYear = int.Parse(DateTime.Now.Year.ToString());
             int yearOfBirth = int.Parse(i_Friend.Birthday.Substring(6, 4));
 
-            matchesInfo.Add(string.Format($@"Match`s name: {i_Friend.Name}"));
+            matchesInfo.Add(string.Format($@"Name: {i_Friend.Name}"));
             matchesInfo.Add(string.Format($@"Age: {r_CurrentYear - yearOfBirth}"));
             return matchesInfo;
         }
