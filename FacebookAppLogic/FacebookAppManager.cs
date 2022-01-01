@@ -9,7 +9,7 @@ namespace FacebookAppLogic
 {
     public sealed class FacebookAppManager : IEnumerable<User>
     {
-        private List<User> friendsList = new List<User>();
+        private readonly List<User>  r_friendsList = new List<User>();
         public User m_LoggedInUser;
         private LoginResult m_LoginResult;
         private const string k_MessageFailedFetch = "Fetch failed. Please try again.";
@@ -136,12 +136,12 @@ namespace FacebookAppLogic
                         stringCompareResult = string.Compare(nextDays, friend.Birthday.Substring(0, 5));
                         if (stringCompareResult == 0)
                         {
-                            friendsList.Add(friend.Name + ' ' + friend.Birthday);
+                            fr_r_friendsList.Add(friend.Name + ' ' + friend.Birthday);
                         }
                     }
                 }
 
-                return friendsList;
+                return fr_r_friendsList;
             }
             catch
             {
@@ -151,7 +151,7 @@ namespace FacebookAppLogic
 
         public List<User> FetchFriendsList()
         {
-            List<User> friendsList = new List<User>();
+            List<User> r_friendsList = new List<User>();
 
             try
             {
@@ -159,11 +159,11 @@ namespace FacebookAppLogic
                 {
                     if (friend.Name != null)
                     {
-                        friendsList.Add(friend);
+                        r_friendsList.Add(friend);
                     }
                 }
 
-                return friendsList;
+                return r_friendsList;
             }
             catch
             {
@@ -225,7 +225,7 @@ namespace FacebookAppLogic
         }
         public IEnumerator<User> GetEnumerator()
         {
-            foreach (User friend in friendsList)
+            foreach (User friend in r_friendsList)
             {
 
                 if (FilterUpcomingBirthdays.Invoke(friend))
@@ -240,7 +240,7 @@ namespace FacebookAppLogic
             foreach (User friend in LoggedInUser.Friends)
             {
 
-                friendsList.Add(friend);
+                r_friendsList.Add(friend);
                 
             }
         }
