@@ -9,7 +9,7 @@ namespace BasicFacebookFeatures
     {
         private readonly MyMatchFacade r_MyMatchFacade = new MyMatchFacade();
         private const string k_ErrorMessageAgeRange = "The range you entered is not possible";
-
+        int PresentationDetailsType;
 
         public SelectPreferencesForm()
         {
@@ -45,9 +45,21 @@ namespace BasicFacebookFeatures
                 int.Parse(FromNumericUpDown.Value.ToString()),
                 int.Parse(ToNumericUpDown.Value.ToString()),
                 genderSelection);
-            FindMyMatchForm findMyMatchForm = new FindMyMatchForm(r_MyMatchFacade.GetMyMatches());
+            FindMyMatchForm findMyMatchForm = new FindMyMatchForm(r_MyMatchFacade.GetMyMatches(), PresentationDetailsType);
             this.Close();
             findMyMatchForm.Show();
+        }
+
+    
+
+        private void FullRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            PresentationDetailsType = 0;
+        }
+
+        private void LimitedRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            PresentationDetailsType = 1;
         }
     }
 }

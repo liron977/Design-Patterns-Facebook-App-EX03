@@ -38,10 +38,13 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ExtendMatchInfo.cs" />
     <Compile Include="FacebookAppManager.cs" />
     <Compile Include="FindMyMatchLogic.cs" />
     <Compile Include="FriendLogic.cs" />
     <Compile Include="IMyMatchFormat.cs" />
+    <Compile Include="IMyMatchInfoStrategy.cs" />
+    <Compile Include="LimitedMatchInfo.cs" />
     <Compile Include="LoginFacade.cs" />
     <Compile Include="MyMatchFormatAdapter.cs" />
     <Compile Include="MyMatchFacade.cs" />

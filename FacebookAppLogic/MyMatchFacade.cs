@@ -17,13 +17,13 @@ namespace FacebookAppLogic
             return r_FindMyMatchLogic.r_FriendsList;
         }
 
-        public List<string> GetMyMatchesInfo()
+        public List<string> GetMyMatchesInfo(int i_type)
         {
             List<string> matchesByFormat = new List<string>();
 
             foreach(FriendLogic friend in r_FindMyMatchLogic.r_FriendsList)
             {
-                IMyMatchFormat iMatchesFormat = new MyMatchFormatAdapter(friend.Friend);
+                IMyMatchFormat iMatchesFormat = new MyMatchFormatAdapter(friend.Friend, i_type);
                 matchesByFormat.AddRange(iMatchesFormat.CreateFormattedMatchesList());
             }
 
@@ -40,9 +40,9 @@ namespace FacebookAppLogic
             r_FindMyMatchLogic.UpdateFriendList(i_FriendsList);
         }
 
-        public int GetSelectedMatchIndex(string i_SelectedItem, int i_SelectedIndex)
+        public int GetSelectedMatchIndex(string i_SelectedItem, int i_SelectedIndex, int i_type)
         {
-            return r_FindMyMatchLogic.GetNameIndex(i_SelectedItem, i_SelectedIndex);
+            return r_FindMyMatchLogic.GetNameIndex(i_SelectedItem, i_SelectedIndex, i_type);
         }
 
         public User GetSelectedMatch(string i_SelectedMatch)

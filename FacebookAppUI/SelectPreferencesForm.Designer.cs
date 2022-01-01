@@ -38,6 +38,8 @@ namespace BasicFacebookFeatures
             this.continueButton = new System.Windows.Forms.Button();
             this.ToNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.FromNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.FullRadioButton = new System.Windows.Forms.RadioButton();
+            this.LimitedRadioButton = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.ToNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FromNumericUpDown)).BeginInit();
             this.SuspendLayout();
@@ -48,9 +50,10 @@ namespace BasicFacebookFeatures
             this.label2.BackColor = System.Drawing.Color.RoyalBlue;
             this.label2.Font = new System.Drawing.Font("Aharoni", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.label2.ForeColor = System.Drawing.SystemColors.Control;
-            this.label2.Location = new System.Drawing.Point(12, 24);
+            this.label2.Location = new System.Drawing.Point(8, 16);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(346, 28);
+            this.label2.Size = new System.Drawing.Size(236, 19);
             this.label2.TabIndex = 1;
             this.label2.Text = "What is your preference?";
             // 
@@ -60,9 +63,10 @@ namespace BasicFacebookFeatures
             this.ageRangelabel.BackColor = System.Drawing.Color.RoyalBlue;
             this.ageRangelabel.Font = new System.Drawing.Font("Aharoni", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.ageRangelabel.ForeColor = System.Drawing.SystemColors.Control;
-            this.ageRangelabel.Location = new System.Drawing.Point(47, 156);
+            this.ageRangelabel.Location = new System.Drawing.Point(31, 101);
+            this.ageRangelabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.ageRangelabel.Name = "ageRangelabel";
-            this.ageRangelabel.Size = new System.Drawing.Size(282, 28);
+            this.ageRangelabel.Size = new System.Drawing.Size(194, 19);
             this.ageRangelabel.TabIndex = 5;
             this.ageRangelabel.Text = "Desirable age range";
             // 
@@ -70,9 +74,10 @@ namespace BasicFacebookFeatures
             // 
             this.ToLabel.AutoSize = true;
             this.ToLabel.Font = new System.Drawing.Font("Aharoni", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.ToLabel.Location = new System.Drawing.Point(147, 203);
+            this.ToLabel.Location = new System.Drawing.Point(98, 132);
+            this.ToLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.ToLabel.Name = "ToLabel";
-            this.ToLabel.Size = new System.Drawing.Size(30, 20);
+            this.ToLabel.Size = new System.Drawing.Size(23, 14);
             this.ToLabel.TabIndex = 8;
             this.ToLabel.Text = "To";
             // 
@@ -80,9 +85,10 @@ namespace BasicFacebookFeatures
             // 
             this.fromLabel.AutoSize = true;
             this.fromLabel.Font = new System.Drawing.Font("Aharoni", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.fromLabel.Location = new System.Drawing.Point(-1, 200);
+            this.fromLabel.Location = new System.Drawing.Point(-1, 130);
+            this.fromLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.fromLabel.Name = "fromLabel";
-            this.fromLabel.Size = new System.Drawing.Size(57, 20);
+            this.fromLabel.Size = new System.Drawing.Size(41, 14);
             this.fromLabel.TabIndex = 9;
             this.fromLabel.Text = "From";
             // 
@@ -90,9 +96,10 @@ namespace BasicFacebookFeatures
             // 
             this.femaleRadioButton.AutoSize = true;
             this.femaleRadioButton.Font = new System.Drawing.Font("Aharoni", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.femaleRadioButton.Location = new System.Drawing.Point(12, 74);
+            this.femaleRadioButton.Location = new System.Drawing.Point(8, 48);
+            this.femaleRadioButton.Margin = new System.Windows.Forms.Padding(2);
             this.femaleRadioButton.Name = "femaleRadioButton";
-            this.femaleRadioButton.Size = new System.Drawing.Size(101, 24);
+            this.femaleRadioButton.Size = new System.Drawing.Size(73, 18);
             this.femaleRadioButton.TabIndex = 13;
             this.femaleRadioButton.TabStop = true;
             this.femaleRadioButton.Text = "Female";
@@ -102,9 +109,10 @@ namespace BasicFacebookFeatures
             // 
             this.maleRadioButton.AutoSize = true;
             this.maleRadioButton.Font = new System.Drawing.Font("Aharoni", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.maleRadioButton.Location = new System.Drawing.Point(134, 74);
+            this.maleRadioButton.Location = new System.Drawing.Point(89, 48);
+            this.maleRadioButton.Margin = new System.Windows.Forms.Padding(2);
             this.maleRadioButton.Name = "maleRadioButton";
-            this.maleRadioButton.Size = new System.Drawing.Size(80, 24);
+            this.maleRadioButton.Size = new System.Drawing.Size(59, 18);
             this.maleRadioButton.TabIndex = 15;
             this.maleRadioButton.TabStop = true;
             this.maleRadioButton.Text = "Male";
@@ -115,9 +123,10 @@ namespace BasicFacebookFeatures
             this.continueButton.BackColor = System.Drawing.Color.CornflowerBlue;
             this.continueButton.Font = new System.Drawing.Font("Aharoni", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.continueButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.continueButton.Location = new System.Drawing.Point(124, 289);
+            this.continueButton.Location = new System.Drawing.Point(83, 188);
+            this.continueButton.Margin = new System.Windows.Forms.Padding(2);
             this.continueButton.Name = "continueButton";
-            this.continueButton.Size = new System.Drawing.Size(225, 67);
+            this.continueButton.Size = new System.Drawing.Size(150, 44);
             this.continueButton.TabIndex = 16;
             this.continueButton.Text = "Continue";
             this.continueButton.UseVisualStyleBackColor = false;
@@ -125,7 +134,8 @@ namespace BasicFacebookFeatures
             // 
             // ToNumericUpDown
             // 
-            this.ToNumericUpDown.Location = new System.Drawing.Point(200, 197);
+            this.ToNumericUpDown.Location = new System.Drawing.Point(133, 128);
+            this.ToNumericUpDown.Margin = new System.Windows.Forms.Padding(2);
             this.ToNumericUpDown.Maximum = new decimal(new int[] {
             120,
             0,
@@ -137,7 +147,7 @@ namespace BasicFacebookFeatures
             0,
             0});
             this.ToNumericUpDown.Name = "ToNumericUpDown";
-            this.ToNumericUpDown.Size = new System.Drawing.Size(68, 26);
+            this.ToNumericUpDown.Size = new System.Drawing.Size(45, 20);
             this.ToNumericUpDown.TabIndex = 17;
             this.ToNumericUpDown.Value = new decimal(new int[] {
             18,
@@ -147,7 +157,8 @@ namespace BasicFacebookFeatures
             // 
             // FromNumericUpDown
             // 
-            this.FromNumericUpDown.Location = new System.Drawing.Point(62, 197);
+            this.FromNumericUpDown.Location = new System.Drawing.Point(41, 128);
+            this.FromNumericUpDown.Margin = new System.Windows.Forms.Padding(2);
             this.FromNumericUpDown.Maximum = new decimal(new int[] {
             120,
             0,
@@ -159,7 +170,7 @@ namespace BasicFacebookFeatures
             0,
             0});
             this.FromNumericUpDown.Name = "FromNumericUpDown";
-            this.FromNumericUpDown.Size = new System.Drawing.Size(67, 26);
+            this.FromNumericUpDown.Size = new System.Drawing.Size(45, 20);
             this.FromNumericUpDown.TabIndex = 18;
             this.FromNumericUpDown.Value = new decimal(new int[] {
             18,
@@ -167,12 +178,39 @@ namespace BasicFacebookFeatures
             0,
             0});
             // 
+            // FullRadioButton
+            // 
+            this.FullRadioButton.AutoSize = true;
+            this.FullRadioButton.Location = new System.Drawing.Point(12, 166);
+            this.FullRadioButton.Name = "FullRadioButton";
+            this.FullRadioButton.Size = new System.Drawing.Size(77, 17);
+            this.FullRadioButton.TabIndex = 19;
+            this.FullRadioButton.TabStop = true;
+            this.FullRadioButton.Text = "Full deatils ";
+            this.FullRadioButton.UseVisualStyleBackColor = true;
+            this.FullRadioButton.CheckedChanged += new System.EventHandler(this.FullRadioButton_CheckedChanged);
+            // 
+            // LimitedRadioButton
+            // 
+            this.LimitedRadioButton.AutoSize = true;
+            this.LimitedRadioButton.Location = new System.Drawing.Point(114, 166);
+            this.LimitedRadioButton.Name = "LimitedRadioButton";
+            this.LimitedRadioButton.Size = new System.Drawing.Size(94, 17);
+            this.LimitedRadioButton.TabIndex = 20;
+            this.LimitedRadioButton.TabStop = true;
+            this.LimitedRadioButton.Text = "Limited deatils ";
+            this.LimitedRadioButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.LimitedRadioButton.UseVisualStyleBackColor = true;
+            this.LimitedRadioButton.CheckedChanged += new System.EventHandler(this.LimitedRadioButton_CheckedChanged);
+            // 
             // SelectPreferencesForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.ClientSize = new System.Drawing.Size(379, 385);
+            this.ClientSize = new System.Drawing.Size(253, 250);
+            this.Controls.Add(this.LimitedRadioButton);
+            this.Controls.Add(this.FullRadioButton);
             this.Controls.Add(this.FromNumericUpDown);
             this.Controls.Add(this.ToNumericUpDown);
             this.Controls.Add(this.continueButton);
@@ -182,6 +220,7 @@ namespace BasicFacebookFeatures
             this.Controls.Add(this.ToLabel);
             this.Controls.Add(this.ageRangelabel);
             this.Controls.Add(this.label2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "SelectPreferencesForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SelectPreferencesForm";
@@ -203,5 +242,7 @@ namespace BasicFacebookFeatures
         private System.Windows.Forms.Button continueButton;
         private System.Windows.Forms.NumericUpDown ToNumericUpDown;
         private System.Windows.Forms.NumericUpDown FromNumericUpDown;
+        private System.Windows.Forms.RadioButton FullRadioButton;
+        private System.Windows.Forms.RadioButton LimitedRadioButton;
     }
 }

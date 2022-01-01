@@ -10,12 +10,14 @@ namespace BasicFacebookFeatures
     internal partial class FindMyMatchForm : Form
     {
         private readonly MyMatchFacade r_MyMatchFacade = new MyMatchFacade();
+        private readonly int r_type;
 
         private const string k_MessageNoMatches = "No matches to retrieve";
 
-        public FindMyMatchForm(List<FriendLogic> i_FriendsList)
+        public FindMyMatchForm(List<FriendLogic> i_FriendsList,int i_type)
         {
             r_MyMatchFacade.UpdateMatchesList(i_FriendsList);
+            r_type = i_type;
             InitializeComponent();
         }
 
@@ -49,10 +51,12 @@ namespace BasicFacebookFeatures
 
         private void fetchMatches()
         {
+            List<string> matchesList = r_MyMatchFacade.GetMyMatchesInfo(r_type);
             try
             {
-                foreach(string matchInfo in r_MyMatchFacade.GetMyMatchesInfo())
+                foreach(string matchInfo in matchesList)
                 {
+                   
                     recommendedMatchesListBox.Invoke(new Action(() => recommendedMatchesListBox.Items.Add(matchInfo)));
                 }
 
@@ -67,6 +71,8 @@ namespace BasicFacebookFeatures
             }
         }
 
+
+
         private void recommendedMatchesListBox_SelectedIndexChanged(object i_Sender, EventArgs i_E)
         {
             showSelectedFriendDetails();
@@ -79,7 +85,7 @@ namespace BasicFacebookFeatures
                 MyMatchForm myMatch = new MyMatchForm();
                 int matchNameIndex = r_MyMatchFacade.GetSelectedMatchIndex(
                     recommendedMatchesListBox.SelectedItem.ToString(),
-                    recommendedMatchesListBox.SelectedIndex);
+                    recommendedMatchesListBox.SelectedIndex, r_type);
 
                 myMatch.m_FriendFacade.FriendLogic.Friend =
                     r_MyMatchFacade.GetSelectedMatch(recommendedMatchesListBox.Items[matchNameIndex].ToString());

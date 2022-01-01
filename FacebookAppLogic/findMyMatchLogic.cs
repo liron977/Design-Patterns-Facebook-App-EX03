@@ -11,18 +11,38 @@ namespace FacebookAppLogic
         private const string k_MessageFailedFetch = "Fetch failed. Please try again.";
 
 
-        public int GetNameIndex(string i_SelectedItem, int i_SelectedIndex)
+        public int GetNameIndex(string i_SelectedItem, int i_SelectedIndex, int i_Type)
+
         {
-            switch(i_SelectedItem[0])
+            if (i_Type == 1)
             {
-                case '-':
-                    return i_SelectedIndex - 3;
-                case 'L':
-                    return i_SelectedIndex - 2;
-                case 'A':
-                    return i_SelectedIndex - 1;
-                default:
-                    return i_SelectedIndex;
+                switch (i_SelectedItem[0])
+                {
+                    case 'A':
+                        return i_SelectedIndex - 1;
+                    case '-':
+                        return i_SelectedIndex - 2;
+                    default:
+                        return i_SelectedIndex;
+                }
+            }
+
+            else
+            {
+                switch (i_SelectedItem[0])
+                {
+                    case '-':
+                        return i_SelectedIndex - 4;
+                    case 'G':
+                        return i_SelectedIndex - 3;
+                    case 'L':
+                        return i_SelectedIndex - 2;
+                    case 'A':
+                        return i_SelectedIndex - 1;
+                    default:
+                        return i_SelectedIndex;
+
+                }
             }
         }
 

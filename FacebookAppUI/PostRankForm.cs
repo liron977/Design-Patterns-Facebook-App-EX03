@@ -106,7 +106,7 @@ namespace BasicFacebookFeatures
             List<Post> descendingSortedPosts = new List<Post>();
 
             ascending.Enabled = true;
-            var dictSort = from objDict in m_UserPosts orderby objDict.Value descending select objDict;
+            List<KeyValuePair<Post,int>> dictSort = (from objDict in m_UserPosts orderby objDict.Value descending select objDict).ToList();
             try
             {
                 foreach(KeyValuePair<Post, int> kvp in dictSort)
@@ -123,7 +123,7 @@ namespace BasicFacebookFeatures
             {
                 MessageBox.Show(ex.Message);
             }
-
+         
             descendingSorted.Checked = false;
             descendingSorted.Enabled = false;
         }
