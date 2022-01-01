@@ -43,8 +43,8 @@ namespace BasicFacebookFeatures
         private void fetchUpcomingBirthdays()
         {
            
-                         //upcomingBirthdaysListBox.Items.Clear();
-                    
+                        upcomingBirthdaysListBox.Items.Clear();
+            
                         m_BirthYearFriends = r_ProfileFacade.FetchUpcomingBirthdays(m_UpcomungDays);
 
                         using (IEnumerator<User> iterator = m_BirthYearFriends)
@@ -235,7 +235,7 @@ This is the time to enlarge the friends in this age")));
 
         private void radioButton3DaysFilter_Click(object sender, EventArgs e)
         {
-            m_UpcomungDays = 3;
+            m_UpcomungDays = 187;
             fetchUpcomingBirthdays();
 
         }
