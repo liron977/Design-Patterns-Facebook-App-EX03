@@ -15,6 +15,8 @@ namespace BasicFacebookFeatures
         private const string k_MessageNoData = "No data to show";
         private const string k_MessageStatusPosted = "Status Posted! ID";
         private const string k_MessageErrorBirthday = @"None of your friends has birthday in the next 3 days";
+        private IEnumerator<User> m_BirthYearFriends;
+        private int m_UpcomungDays=3;
 
 
         public UserProfileForm()
@@ -24,7 +26,9 @@ namespace BasicFacebookFeatures
 
         protected override void OnShown(EventArgs i_E)
         {
+            r_ProfileFacade.initFriendList();
             new Thread(fetchInfo).Start();
+           
         }
 
         private void fetchInfo()
@@ -32,38 +36,67 @@ namespace BasicFacebookFeatures
             ProfilePicture.Load(r_ProfileFacade.GetPicture());
             new Thread(fetchNewsFeed).Start();
             new Thread(fetchFriends).Start();
-            new Thread(fetchUpcomingBirthdays).Start();
+           // new Thread(fetchUpcomingBirthdays).Start();
             new Thread(fetchAlbums).Start();
         }
 
         private void fetchUpcomingBirthdays()
         {
-            try
-            {
-                if(upcomingBirthdaysListBox.Items.Count != 0)
-                {
-                    upcomingBirthdaysListBox.Invoke(new Action(() => upcomingBirthdaysListBox.Items.Clear()));
-                }
-                else
-                {
-                    List<string> friendList = r_ProfileFacade.GetUpcomingBirthdays();
+           
+                         //upcomingBirthdaysListBox.Items.Clear();
+                    
+                        m_BirthYearFriends = r_ProfileFacade.FetchUpcomingBirthdays(m_UpcomungDays);
 
-                    foreach(string friendUser in friendList)
-                    {
-                        upcomingBirthdaysListBox.Invoke(
-                            new Action(() => upcomingBirthdaysListBox.Items.Add(friendUser)));
-                    }
+                        using (IEnumerator<User> iterator = m_BirthYearFriends)
+                        {
+                            while (iterator.MoveNext())
+                            {
+                        upcomingBirthdaysListBox.Items.Add(iterator.Current);
+                            }
+                        }
 
-                    if(friendsListBox.Items.Count == 0)
+                        if (upcomingBirthdaysListBox.Items.Count == 0)
+                        {
+                            MessageBox.Show(
+                                (string.Format($@"No friend in birth year: {m_UpcomungDays} using this app. 
+This is the time to enlarge the friends in this age")));
+                        }
+                    
+              /*      else
                     {
                         MessageBox.Show(k_MessageErrorBirthday);
-                    }
-                }
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+                    }*/
+              
+            
+
+
+
+            /* try
+             {
+                 if(upcomingBirthdaysListBox.Items.Count != 0)
+                 {
+                     upcomingBirthdaysListBox.Invoke(new Action(() => upcomingBirthdaysListBox.Items.Clear()));
+                 }
+                 else
+                 {
+                     List<string> friendList = r_ProfileFacade.GetUpcomingBirthdays();
+
+                     foreach(string friendUser in friendList)
+                     {
+                         upcomingBirthdaysListBox.Invoke(
+                             new Action(() => upcomingBirthdaysListBox.Items.Add(friendUser)));
+                     }
+
+                     if(friendsListBox.Items.Count == 0)
+                     {
+                         MessageBox.Show(k_MessageErrorBirthday);
+                     }
+                 }
+             }
+             catch(Exception ex)
+             {
+                 MessageBox.Show(ex.Message);
+             }*/
         }
 
         private void fetchFriends()
@@ -168,6 +201,43 @@ namespace BasicFacebookFeatures
             }
         }
 
-       
+  /*      private void radioButton7DaysFilter_CheckedChanged(object sender, EventArgs e)
+        {
+            m_UpcomungDays = 7;
+            fetchUpcomingBirthdays();
+     
+        }*/
+
+       /* private void radioButton3DaysFilter_CheckedChanged(object sender, EventArgs e)
+        {
+            m_UpcomungDays = 3;
+            fetchUpcomingBirthdays();
+        }*/
+
+   /*     private void radioButtonIn30days_CheckedChanged(object sender, EventArgs e)
+        {
+            m_UpcomungDays = 30;
+            fetchUpcomingBirthdays();
+        }
+*/
+        private void radioButtonIn30days_Click(object sender, EventArgs e)
+        {
+            m_UpcomungDays = 30;
+            fetchUpcomingBirthdays();
+        }
+
+        private void radioButton7DaysFilter_Click(object sender, EventArgs e)
+        {
+            m_UpcomungDays = 7;
+            fetchUpcomingBirthdays();
+
+        }
+
+        private void radioButton3DaysFilter_Click(object sender, EventArgs e)
+        {
+            m_UpcomungDays = 3;
+            fetchUpcomingBirthdays();
+
+        }
     }
 }

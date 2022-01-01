@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
 using FacebookWrapper.ObjectModel;
+using System;
+using System.Collections;
+using FacebookWrapper;
 
 namespace FacebookAppLogic
 {
@@ -10,6 +13,10 @@ namespace FacebookAppLogic
         public UserProfileFacade()
         {
             r_AppManager = FacebookAppManager.Instance;
+        }
+        public void initFriendList()
+        {
+            r_AppManager.initFriendList();
         }
 
         public string GetPicture()
@@ -27,11 +34,11 @@ namespace FacebookAppLogic
             return r_AppManager.FetchFriendsList();
         }
 
-        public List<string> GetUpcomingBirthdays()
+    /*    public List<string> GetUpcomingBirthdays()
         {
-            return r_AppManager.FetchUpcomingBirthdays();
+           // return r_AppManager.();
         }
-
+*/
         public List<Album> GetAlbums()
         {
             return r_AppManager.FetchAlbums();
@@ -50,6 +57,21 @@ namespace FacebookAppLogic
         public string GetUserName()
         {
             return r_AppManager.FetchUserName();
+        }
+        public IEnumerator<User> FetchUpcomingBirthdays(int i_UpcomingDays)
+        {
+            string nextDays;
+           
+            r_AppManager.FilterUpcomingBirthdays = i_Friend =>
+            {
+                for (int i = 0; i <= i_UpcomingDays; i++) { nextDays = DateTime.Now.Date.AddDays(i).ToString("dd/MM"); if (string.Compare(nextDays, i_Friend.Birthday.Substring(0, 5)) == 0) return true; }
+                return false;
+            };
+            return GetEnumerator();
+        }
+        public IEnumerator<User> GetEnumerator()
+        {
+            return r_AppManager.GetEnumerator();
         }
     }
 }

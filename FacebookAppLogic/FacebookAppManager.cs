@@ -1,12 +1,15 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using FacebookWrapper;
 using FacebookWrapper.ObjectModel;
 
+
 namespace FacebookAppLogic
 {
-    public sealed class FacebookAppManager
+    public sealed class FacebookAppManager : IEnumerable<User>
     {
+        private List<User> friendsList = new List<User>();
         public User m_LoggedInUser;
         private LoginResult m_LoginResult;
         private const string k_MessageFailedFetch = "Fetch failed. Please try again.";
@@ -14,7 +17,7 @@ namespace FacebookAppLogic
         private const int k_RangeDaysUpcomingBirthdays = 3;
         private static FacebookAppManager s_Instance;
         private static readonly object sr_FacebookAppManagerLock = new object();
-
+        public Func<User, bool> FilterUpcomingBirthdays { get; set; }
         private FacebookAppManager()
         {
         }
@@ -23,11 +26,11 @@ namespace FacebookAppLogic
         {
             get
             {
-                if(s_Instance == null)
+                if (s_Instance == null)
                 {
-                    lock(sr_FacebookAppManagerLock)
+                    lock (sr_FacebookAppManagerLock)
                     {
-                        if(s_Instance == null)
+                        if (s_Instance == null)
                         {
                             s_Instance = new FacebookAppManager();
                         }
@@ -74,16 +77,16 @@ namespace FacebookAppLogic
                 "user_posts",
                 "user_videos");
 
-
+/*
             m_LoginResult = FacebookService.Connect(
-                 "EAAMRrZBhZBBeABAAf3mGAZBSZAmq4wLITXmbz0XwHZAZCKu9IWUE1kk185K9xD2br3S8ZBvPMPqFrM7TZAGFETvMVZC1sy9cBpup8pdgiOuPiG59G2dZCIBbUl3nrIXaWQgJjjlo2wk2vmkqYptL8cxw5OprMkh3b1VpJ7ZCyj2SVhQZBT3XAmc7W0NDZBoTQkv8dj0Y3P6ZBPGdeVxWr14fkyABaG");
-             //m_LoginResult = FacebookWrapper.FacebookService.Connect(
-             //"EAAMRrZBhZBBeABAAf3mGAZBSZAmq4wLITXmbz0XwHZAZCKu9IWUE1kk185K9xD2br3S8ZBvPMPqFrM7TZAGFETvMVZC1sy9cBpup8pdgiOuPiG59G2dZCIBbUl3nrIXaWQgJjjlo2wk2vmkqYptL8cxw5OprMkh3b1VpJ7ZCyj2SVhQZBT3XAmc7W0NDZBoTQkv8dj0Y3P6ZBPGdeVxWr14fkyABaG");
+                 "EAAMRrZBhZBBeABAIXMPvsh0kft9QMjyNETQFkht9jnYIC1iSlaNEynmfUlwsCHenjvU8oSd0RxYHGXmMiTN75Byiv7yqaZAgdHK1Ewm5tcuVNFPP4QS9tNFb6Gh7Loq5U88K00ji6ddNWDeuVilnSssrtNnlL9MZCSakRtsyShBOZB3RBIZBhkXpdkd9sZAZAxnoZAfU9exL5Qe7zRMi3ijG1");*/
+            //m_LoginResult = FacebookWrapper.FacebookService.Connect(
+            //"EAAMRrZBhZBBeABAAf3mGAZBSZAmq4wLITXmbz0XwHZAZCKu9IWUE1kk185K9xD2br3S8ZBvPMPqFrM7TZAGFETvMVZC1sy9cBpup8pdgiOuPiG59G2dZCIBbUl3nrIXaWQgJjjlo2wk2vmkqYptL8cxw5OprMkh3b1VpJ7ZCyj2SVhQZBT3XAmc7W0NDZBoTQkv8dj0Y3P6ZBPGdeVxWr14fkyABaG");
 
-             //m_LoginResult = FacebookWrapper.FacebookService.Connect("EAAMRrZBhZBBeABABaCfGQXZC7RvKG5YRsacaNfGZATvFxnQeNKBagzATVmI0o2ROLtIsZCgqnJLXR3T0ZAS0KISGnj5hkLSuEwbrLImFodqmXQsrG4rPXZCZAd10Mj3eGaIsup3wLcsJovRJaZAfZAKSf5BiPZBqqavBeyA2iEsSdKM5xs2STGU31j0wRE0yGFsaURmfgVNFuuW6Dk5y6M9uTGB");
-             /*            m_LoginResult = FacebookWrapper.FacebookService.Connect(
-                             "EAAMRrZBhZBBeABACgEZChie2ZCCgvrp8xRABOCI16YVQ59xv4mpauBuZAo701hVcPy8oAvjc56jD4BJesszvVdJZChgGuwOgSfnpwVgLxDDlRz8wHfXKmVPAyMk9RZAHPIpZAEY2Tx04aXsZAPoZCnvBDfxlJqsMFO2XAt3ZCezZCbks8x7VleqCohkG");*/
-             m_LoggedInUser = m_LoginResult.LoggedInUser;
+            //m_LoginResult = FacebookWrapper.FacebookService.Connect("EAAMRrZBhZBBeABABaCfGQXZC7RvKG5YRsacaNfGZATvFxnQeNKBagzATVmI0o2ROLtIsZCgqnJLXR3T0ZAS0KISGnj5hkLSuEwbrLImFodqmXQsrG4rPXZCZAd10Mj3eGaIsup3wLcsJovRJaZAfZAKSf5BiPZBqqavBeyA2iEsSdKM5xs2STGU31j0wRE0yGFsaURmfgVNFuuW6Dk5y6M9uTGB");
+            /*            m_LoginResult = FacebookWrapper.FacebookService.Connect(
+                            "EAAMRrZBhZBBeABACgEZChie2ZCCgvrp8xRABOCI16YVQ59xv4mpauBuZAo701hVcPy8oAvjc56jD4BJesszvVdJZChgGuwOgSfnpwVgLxDDlRz8wHfXKmVPAyMk9RZAHPIpZAEY2Tx04aXsZAPoZCnvBDfxlJqsMFO2XAt3ZCezZCbks8x7VleqCohkG");*/
+          //  m_LoggedInUser = m_LoginResult.LoggedInUser;
 
 
 
@@ -117,21 +120,21 @@ namespace FacebookAppLogic
             return postedStatus;
         }
 
-        public List<string> FetchUpcomingBirthdays()
+   /*     public List<string> FetchUpcomingBirthdays()
         {
-            List<string> friendsList = new List<string>();
+
             string nextDays;
             int stringCompareResult;
 
             try
             {
-                foreach(User friend in LoggedInUser.Friends)
+                foreach (User friend in LoggedInUser.Friends)
                 {
-                    for(int i = 0; i < k_RangeDaysUpcomingBirthdays; i++)
+                    for (int i = 0; i < k_RangeDaysUpcomingBirthdays; i++)
                     {
                         nextDays = DateTime.Now.Date.AddDays(i).ToString("dd/MM");
                         stringCompareResult = string.Compare(nextDays, friend.Birthday.Substring(0, 5));
-                        if(stringCompareResult == 0)
+                        if (stringCompareResult == 0)
                         {
                             friendsList.Add(friend.Name + ' ' + friend.Birthday);
                         }
@@ -144,7 +147,7 @@ namespace FacebookAppLogic
             {
                 throw new Exception(k_MessageFailedFetch);
             }
-        }
+        }*/
 
         public List<User> FetchFriendsList()
         {
@@ -152,9 +155,9 @@ namespace FacebookAppLogic
 
             try
             {
-                foreach(User friend in LoggedInUser.Friends)
+                foreach (User friend in LoggedInUser.Friends)
                 {
-                    if(friend.Name != null)
+                    if (friend.Name != null)
                     {
                         friendsList.Add(friend);
                     }
@@ -174,13 +177,13 @@ namespace FacebookAppLogic
 
             try
             {
-                foreach(Post post in m_LoggedInUser.Posts)
+                foreach (Post post in m_LoggedInUser.Posts)
                 {
-                    if(post.Message != null)
+                    if (post.Message != null)
                     {
                         newsFeed.Add(post.Message);
                     }
-                    else if(post.Caption != null)
+                    else if (post.Caption != null)
                     {
                         newsFeed.Add(post.Caption);
                     }
@@ -204,7 +207,7 @@ namespace FacebookAppLogic
 
             try
             {
-                foreach(Album album in m_LoggedInUser.Albums)
+                foreach (Album album in m_LoggedInUser.Albums)
                 {
                     albums.Add(album);
                 }
@@ -215,6 +218,31 @@ namespace FacebookAppLogic
             }
 
             return albums;
+        }
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+        public IEnumerator<User> GetEnumerator()
+        {
+            foreach (User friend in friendsList)
+            {
+
+                if (FilterUpcomingBirthdays.Invoke(friend))
+                {
+                    yield return friend;
+                }
+            }
+
+        }
+        public void initFriendList()
+        {
+            foreach (User friend in LoggedInUser.Friends)
+            {
+
+                friendsList.Add(friend);
+                
+            }
         }
     }
 }
