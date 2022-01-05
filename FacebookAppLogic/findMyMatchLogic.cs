@@ -10,13 +10,12 @@ namespace FacebookAppLogic
         private readonly FacebookAppManager r_AppManager = FacebookAppManager.Instance;
         private const string k_MessageFailedFetch = "Fetch failed. Please try again.";
 
-
         public int GetNameIndex(string i_SelectedItem, int i_SelectedIndex, int i_Type)
 
         {
-            if (i_Type == 1)
+            if(i_Type == 1)
             {
-                switch (i_SelectedItem[0])
+                switch(i_SelectedItem[0])
                 {
                     case 'A':
                         return i_SelectedIndex - 1;
@@ -29,7 +28,7 @@ namespace FacebookAppLogic
 
             else
             {
-                switch (i_SelectedItem[0])
+                switch(i_SelectedItem[0])
                 {
                     case '-':
                         return i_SelectedIndex - 4;
@@ -41,7 +40,6 @@ namespace FacebookAppLogic
                         return i_SelectedIndex - 1;
                     default:
                         return i_SelectedIndex;
-
                 }
             }
         }

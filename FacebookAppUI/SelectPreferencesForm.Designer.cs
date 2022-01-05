@@ -188,7 +188,7 @@ namespace BasicFacebookFeatures
             this.comboBoxMatchDeatils.Name = "comboBoxMatchDeatils";
             this.comboBoxMatchDeatils.Size = new System.Drawing.Size(121, 21);
             this.comboBoxMatchDeatils.TabIndex = 21;
-            this.comboBoxMatchDeatils.SelectedIndexChanged += new System.EventHandler(this.comboBoxMatchDeatils_SelectedIndexChanged);
+            this.comboBoxMatchDeatils.SelectedIndexChanged += new System.EventHandler(this.comboBoxMatchDetails_SelectedIndexChanged);
             // 
             // FormatText
             // 

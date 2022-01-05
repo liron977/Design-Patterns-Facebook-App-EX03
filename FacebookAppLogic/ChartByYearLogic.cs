@@ -1,76 +1,50 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using FacebookWrapper.ObjectModel;
 
 namespace FacebookAppLogic
 {
     class ChartByYearLogic : ChartLogic
     {
-        private int CurrentYear;
-      /*  public readonly List<Post>[] r_UserPostsOrderedByYear = new List<Post>[22];*/
+        private int m_CurrentYear;
+        private readonly int r_Millennium = DateTime.Now.Year - DateTime.Now.Year % 1000;
+        private readonly int r_NumberOfYearsToShow = 10;
+        private readonly int r_JumpsBetweenEachX = 1;
 
-      
         protected override int MaxNumberOfX()
         {
-            CurrentYear = int.Parse(DateTime.Now.Year.ToString())-2000;
-            return CurrentYear;
-        }
-        protected override int GetXValueByPost(Post i_Post)
-        {
-            return i_Post.CreatedTime.Value.Year-2000;
+            m_CurrentYear = int.Parse(DateTime.Now.Year.ToString()) - r_Millennium;
+            return m_CurrentYear;
         }
 
-        /*public void InitUserPostsOrderedByYearList()
+        protected override int GetXValueByPost(Post i_Post)
         {
-            for (int i = 0; i < 22; i++)
-            {
-                r_UserPostsOrderedByYear[i] = new List<Post>();
-            }
-        }*/
+            return i_Post.CreatedTime.Value.Year - r_Millennium;
+        }
+
 
         protected override int MinimumNumberOfX()
         {
-            return (CurrentYear - 10);
+            return (m_CurrentYear - r_NumberOfYearsToShow);
         }
 
         protected override int JumpsBetweenEachX()
         {
-            return 1;
+            return r_JumpsBetweenEachX;
         }
-        protected override float averageOfPosts()
+
+        protected override float AverageOfPosts()
         {
             int sumOfPosts = 0;
-            float averageOfThePosts = 0;
-            foreach (KeyValuePair<int, int> xY in r_ChartXy)
+            float averageOfThePosts;
+            foreach(KeyValuePair<int, int> xY in r_ChartXy)
             {
                 sumOfPosts += xY.Value;
             }
 
-            averageOfThePosts = sumOfPosts / (10);
+            averageOfThePosts = sumOfPosts / r_NumberOfYearsToShow;
 
             return averageOfThePosts;
         }
-        /*  protected override void InitDataList()
-          {
-              InitUserPostsOrderedByYearList();
-
-              int postCreatedYear;
-              foreach (Post post in r_AppManager.UserPostsList)
-              {
-                  postCreatedYear = post.CreatedTime.Value.Year;
-
-                  r_UserPostsOrdered[postCreatedYear -2000].Add(post);
-              }
-
-          }
-  */
-        /* protected override int GetYByX(int x)
-         {
-                return r_UserPostsOrdered[x].Count;
-
-         }*/
     }
 }

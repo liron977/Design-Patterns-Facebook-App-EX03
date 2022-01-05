@@ -9,16 +9,17 @@ namespace FacebookAppLogic
 {
     public sealed class FacebookAppManager : IEnumerable<User>
     {
-        private readonly List<User>  r_friendsList = new List<User>();
+        private readonly List<User> r_FriendsList = new List<User>();
         public User m_LoggedInUser;
         private LoginResult m_LoginResult;
         private const string k_MessageFailedFetch = "Fetch failed. Please try again.";
         private const string k_MessageNoData = "No Data to retrieve";
-        private const int k_RangeDaysUpcomingBirthdays = 3;
         private static FacebookAppManager s_Instance;
         private static readonly object sr_FacebookAppManagerLock = new object();
         private readonly List<Post> r_Posts = new List<Post>();
+
         public Func<User, bool> FilterUpcomingBirthdays { get; set; }
+
         private FacebookAppManager()
         {
         }
@@ -27,11 +28,11 @@ namespace FacebookAppLogic
         {
             get
             {
-                if (s_Instance == null)
+                if(s_Instance == null)
                 {
-                    lock (sr_FacebookAppManagerLock)
+                    lock(sr_FacebookAppManagerLock)
                     {
-                        if (s_Instance == null)
+                        if(s_Instance == null)
                         {
                             s_Instance = new FacebookAppManager();
                         }
@@ -84,9 +85,8 @@ namespace FacebookAppLogic
                 "user_posts",
                 "user_videos");
 
-
             m_LoginResult = FacebookService.Connect(
-                 "EAAMRrZBhZBBeABAIXMPvsh0kft9QMjyNETQFkht9jnYIC1iSlaNEynmfUlwsCHenjvU8oSd0RxYHGXmMiTN75Byiv7yqaZAgdHK1Ewm5tcuVNFPP4QS9tNFb6Gh7Loq5U88K00ji6ddNWDeuVilnSssrtNnlL9MZCSakRtsyShBOZB3RBIZBhkXpdkd9sZAZAxnoZAfU9exL5Qe7zRMi3ijG1");
+                "EAAMRrZBhZBBeABAIXMPvsh0kft9QMjyNETQFkht9jnYIC1iSlaNEynmfUlwsCHenjvU8oSd0RxYHGXmMiTN75Byiv7yqaZAgdHK1Ewm5tcuVNFPP4QS9tNFb6Gh7Loq5U88K00ji6ddNWDeuVilnSssrtNnlL9MZCSakRtsyShBOZB3RBIZBhkXpdkd9sZAZAxnoZAfU9exL5Qe7zRMi3ijG1");
             //m_LoginResult = FacebookWrapper.FacebookService.Connect(
             //"EAAMRrZBhZBBeABAAf3mGAZBSZAmq4wLITXmbz0XwHZAZCKu9IWUE1kk185K9xD2br3S8ZBvPMPqFrM7TZAGFETvMVZC1sy9cBpup8pdgiOuPiG59G2dZCIBbUl3nrIXaWQgJjjlo2wk2vmkqYptL8cxw5OprMkh3b1VpJ7ZCyj2SVhQZBT3XAmc7W0NDZBoTQkv8dj0Y3P6ZBPGdeVxWr14fkyABaG");
 
@@ -95,10 +95,7 @@ namespace FacebookAppLogic
                             "EAAMRrZBhZBBeABACgEZChie2ZCCgvrp8xRABOCI16YVQ59xv4mpauBuZAo701hVcPy8oAvjc56jD4BJesszvVdJZChgGuwOgSfnpwVgLxDDlRz8wHfXKmVPAyMk9RZAHPIpZAEY2Tx04aXsZAPoZCnvBDfxlJqsMFO2XAt3ZCezZCbks8x7VleqCohkG");*/
             m_LoggedInUser = m_LoginResult.LoggedInUser;
 
-
-
-
-            if (!string.IsNullOrEmpty(m_LoginResult.AccessToken))
+            if(!string.IsNullOrEmpty(m_LoginResult.AccessToken))
             {
                 m_LoggedInUser = m_LoginResult.LoggedInUser;
             }
@@ -127,50 +124,22 @@ namespace FacebookAppLogic
             return postedStatus;
         }
 
-   /*     public List<string> FetchUpcomingBirthdays()
-        {
-
-            string nextDays;
-            int stringCompareResult;
-
-            try
-            {
-                foreach (User friend in LoggedInUser.Friends)
-                {
-                    for (int i = 0; i < k_RangeDaysUpcomingBirthdays; i++)
-                    {
-                        nextDays = DateTime.Now.Date.AddDays(i).ToString("dd/MM");
-                        stringCompareResult = string.Compare(nextDays, friend.Birthday.Substring(0, 5));
-                        if (stringCompareResult == 0)
-                        {
-                            fr_r_friendsList.Add(friend.Name + ' ' + friend.Birthday);
-                        }
-                    }
-                }
-
-                return fr_r_friendsList;
-            }
-            catch
-            {
-                throw new Exception(k_MessageFailedFetch);
-            }
-        }*/
 
         public List<User> FetchFriendsList()
         {
-            List<User> r_friendsList = new List<User>();
+            List<User> friendsList = new List<User>();
 
             try
             {
-                foreach (User friend in LoggedInUser.Friends)
+                foreach(User friend in LoggedInUser.Friends)
                 {
-                    if (friend.Name != null)
+                    if(friend.Name != null)
                     {
-                        r_friendsList.Add(friend);
+                        friendsList.Add(friend);
                     }
                 }
 
-                return r_friendsList;
+                return friendsList;
             }
             catch
             {
@@ -184,13 +153,13 @@ namespace FacebookAppLogic
 
             try
             {
-                foreach (Post post in m_LoggedInUser.Posts)
+                foreach(Post post in m_LoggedInUser.Posts)
                 {
-                    if (post.Message != null)
+                    if(post.Message != null)
                     {
                         newsFeed.Add(post.Message);
                     }
-                    else if (post.Caption != null)
+                    else if(post.Caption != null)
                     {
                         newsFeed.Add(post.Caption);
                     }
@@ -214,7 +183,7 @@ namespace FacebookAppLogic
 
             try
             {
-                foreach (Album album in m_LoggedInUser.Albums)
+                foreach(Album album in m_LoggedInUser.Albums)
                 {
                     albums.Add(album);
                 }
@@ -226,29 +195,28 @@ namespace FacebookAppLogic
 
             return albums;
         }
+
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
         }
+
         public IEnumerator<User> GetEnumerator()
         {
-            foreach (User friend in r_friendsList)
+            foreach(User friend in r_FriendsList)
             {
-
-                if (FilterUpcomingBirthdays.Invoke(friend))
+                if(FilterUpcomingBirthdays.Invoke(friend))
                 {
                     yield return friend;
                 }
             }
-
         }
-        public void initFriendList()
-        {
-            foreach (User friend in LoggedInUser.Friends)
-            {
 
-                r_friendsList.Add(friend);
-                
+        public void InitFriendList()
+        {
+            foreach(User friend in LoggedInUser.Friends)
+            {
+                r_FriendsList.Add(friend);
             }
         }
     }

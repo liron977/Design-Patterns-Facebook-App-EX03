@@ -9,8 +9,6 @@ namespace BasicFacebookFeatures
     {
         private readonly UserProfileFacade r_ProfileFacade = new UserProfileFacade();
         private const string k_MessageLogout = " are you sure you want to log out from this app?";
-
-
         public FacebookAppForm()
         {
             InitializeComponent();

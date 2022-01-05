@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FacebookWrapper;
+﻿using System.Collections.Generic;
 using FacebookWrapper.ObjectModel;
 
 namespace FacebookAppLogic
 {
-   public interface IMyMatchInfoStrategy
+    public interface IMyMatchInfoStrategy
     {
-         List<string> CreateListOfMatchInfo(User i_Friend);
+        List<string> CreateListOfMatchInfo(User i_Friend);
     }
 }

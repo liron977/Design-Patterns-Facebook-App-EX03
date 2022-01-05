@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using FacebookWrapper.ObjectModel;
 using System;
-using System.Collections;
-using FacebookWrapper;
 
 namespace FacebookAppLogic
 {
@@ -14,9 +12,10 @@ namespace FacebookAppLogic
         {
             r_AppManager = FacebookAppManager.Instance;
         }
-        public void initFriendList()
+
+        public void InitFriendList()
         {
-            r_AppManager.initFriendList();
+            r_AppManager.InitFriendList();
         }
 
         public string GetPicture()
@@ -34,11 +33,6 @@ namespace FacebookAppLogic
             return r_AppManager.FetchFriendsList();
         }
 
-    /*    public List<string> GetUpcomingBirthdays()
-        {
-           // return r_AppManager.();
-        }
-*/
         public List<Album> GetAlbums()
         {
             return r_AppManager.FetchAlbums();
@@ -58,15 +52,18 @@ namespace FacebookAppLogic
         {
             return r_AppManager.FetchUserName();
         }
+
         public IEnumerator<User> FetchUpcomingBirthdays(int i_UpcomingDays)
         {
-            string nextDays;
             int monthBirth = DateTime.Now.Date.AddDays(i_UpcomingDays).Month;
-            int daybirth = DateTime.Now.Date.AddDays(i_UpcomingDays).Day;
-            r_AppManager.FilterUpcomingBirthdays = i_Friend => ( int.Parse(i_Friend.Birthday.Substring(0, 2)) <= daybirth && int.Parse(i_Friend.Birthday.Substring(3, 2)) == monthBirth);
-                
+            int dayBirth = DateTime.Now.Date.AddDays(i_UpcomingDays).Day;
+            r_AppManager.FilterUpcomingBirthdays = i_Friend =>
+                (int.Parse(i_Friend.Birthday.Substring(0, 2)) <= dayBirth
+                 && int.Parse(i_Friend.Birthday.Substring(3, 2)) == monthBirth);
+
             return GetEnumerator();
         }
+
         public IEnumerator<User> GetEnumerator()
         {
             return r_AppManager.GetEnumerator();

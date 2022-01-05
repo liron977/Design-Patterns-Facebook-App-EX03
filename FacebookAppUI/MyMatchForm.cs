@@ -12,7 +12,6 @@ namespace BasicFacebookFeatures
     {
         public FriendFacade m_FriendFacade = new FriendFacade();
         public UserProfileFacade m_UserProfileFacade = new UserProfileFacade();
-
         private List<Photo> m_Photos;
         private int m_PhotoListIndex;
         private const string k_MessageSomethingWrong = @"Something wrong. Try later";
