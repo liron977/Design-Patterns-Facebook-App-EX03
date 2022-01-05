@@ -10,13 +10,11 @@ namespace BasicFacebookFeatures
     internal partial class UserProfileForm : Form
     {
         private readonly UserProfileFacade r_ProfileFacade = new UserProfileFacade();
-
         private const string k_MessageSomethingWrong = "Something wrong. Try later";
         private const string k_MessageNoData = "No data to show";
         private const string k_MessageStatusPosted = "Status Posted! ID";
         private IEnumerator<User> m_BirthYearFriends;
         private int m_RangeDaysUpcomingBirthdays = 3;
-
 
         public UserProfileForm()
         {
