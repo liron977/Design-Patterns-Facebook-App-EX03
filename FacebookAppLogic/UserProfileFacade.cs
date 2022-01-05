@@ -61,12 +61,10 @@ namespace FacebookAppLogic
         public IEnumerator<User> FetchUpcomingBirthdays(int i_UpcomingDays)
         {
             string nextDays;
-           
-            r_AppManager.FilterUpcomingBirthdays = i_Friend =>
-            {
-                for (int i = 0; i <= i_UpcomingDays; i++) { nextDays = DateTime.Now.Date.AddDays(i).ToString("dd/MM"); if (string.Compare(nextDays, i_Friend.Birthday.Substring(0, 5)) == 0) return true; }
-                return false;
-            };
+            int monthBirth = DateTime.Now.Date.AddDays(i_UpcomingDays).Month;
+            int daybirth = DateTime.Now.Date.AddDays(i_UpcomingDays).Day;
+            r_AppManager.FilterUpcomingBirthdays = i_Friend => ( int.Parse(i_Friend.Birthday.Substring(0, 2)) <= daybirth && int.Parse(i_Friend.Birthday.Substring(3, 2)) == monthBirth);
+                
             return GetEnumerator();
         }
         public IEnumerator<User> GetEnumerator()

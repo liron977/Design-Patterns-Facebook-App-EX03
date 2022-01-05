@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using FacebookAppLogic;
 
@@ -22,11 +23,17 @@ namespace BasicFacebookFeatures
 
         private void displayedCommentsChartOrderedByMonths()
         {
-            int numberOfMonths = r_AppPostsFacade.GetNumberOfMonths();
-            for(int i = 1; i < numberOfMonths; i++)
+            Dictionary<int, int> chartXY = r_AppPostsFacade.GetChartByMonthsXY();
+            foreach(KeyValuePair<int, int> xY in chartXY)
             {
-                commentsChart.Series["Posts"].Points.AddXY(i, r_AppPostsFacade.GetUserPostsOrderedByMonth(i));
+
+                
+                    monthPostsChart.Series["Posts"].Points.AddXY(xY.Key, xY.Value);
+
+               
             }
+
+            MonthAveragePosts.Text = r_AppPostsFacade.GetChartByMonthPostsAverage().ToString();
         }
     }
 }

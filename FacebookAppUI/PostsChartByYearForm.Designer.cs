@@ -37,6 +37,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.commentsChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.message = new System.Windows.Forms.Label();
+            this.PostsAverage = new System.Windows.Forms.Label();
+            this.YearAveragePosts = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.commentsChart)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,13 +67,13 @@
             this.commentsChart.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.commentsChart.Legends.Add(legend1);
-            this.commentsChart.Location = new System.Drawing.Point(-23, 98);
+            this.commentsChart.Location = new System.Drawing.Point(11, 103);
             this.commentsChart.Name = "commentsChart";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Posts";
             this.commentsChart.Series.Add(series1);
-            this.commentsChart.Size = new System.Drawing.Size(1068, 497);
+            this.commentsChart.Size = new System.Drawing.Size(970, 458);
             this.commentsChart.TabIndex = 6;
             this.commentsChart.Text = "chart1";
             // 
@@ -85,17 +87,37 @@
             this.message.TabIndex = 9;
             this.message.Text = "The chart displays the number of posts the user has posted\r\nper year";
             // 
-            // PostsChartByYear
+            // PostsAverage
+            // 
+            this.PostsAverage.AutoSize = true;
+            this.PostsAverage.Location = new System.Drawing.Point(818, 167);
+            this.PostsAverage.Name = "PostsAverage";
+            this.PostsAverage.Size = new System.Drawing.Size(116, 20);
+            this.PostsAverage.TabIndex = 10;
+            this.PostsAverage.Text = "Posts Average:";
+            // 
+            // YearAveragePosts
+            // 
+            this.YearAveragePosts.AutoSize = true;
+            this.YearAveragePosts.Location = new System.Drawing.Point(818, 215);
+            this.YearAveragePosts.Name = "YearAveragePosts";
+            this.YearAveragePosts.Size = new System.Drawing.Size(35, 20);
+            this.YearAveragePosts.TabIndex = 11;
+            this.YearAveragePosts.Text = "text";
+            // 
+            // PostsChartByYearForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
             this.ClientSize = new System.Drawing.Size(993, 587);
+            this.Controls.Add(this.YearAveragePosts);
+            this.Controls.Add(this.PostsAverage);
             this.Controls.Add(this.message);
             this.Controls.Add(this.text);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.commentsChart);
-            this.Name = "PostsChartByYear";
+            this.Name = "PostsChartByYearForm";
             this.Text = "PostChartByYear";
             ((System.ComponentModel.ISupportInitialize)(this.commentsChart)).EndInit();
             this.ResumeLayout(false);
@@ -109,5 +131,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataVisualization.Charting.Chart commentsChart;
         private System.Windows.Forms.Label message;
+        private System.Windows.Forms.Label PostsAverage;
+        private System.Windows.Forms.Label YearAveragePosts;
     }
 }

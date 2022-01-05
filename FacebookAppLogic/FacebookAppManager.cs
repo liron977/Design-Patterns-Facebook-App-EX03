@@ -17,6 +17,7 @@ namespace FacebookAppLogic
         private const int k_RangeDaysUpcomingBirthdays = 3;
         private static FacebookAppManager s_Instance;
         private static readonly object sr_FacebookAppManagerLock = new object();
+        private readonly List<Post> r_Posts = new List<Post>();
         public Func<User, bool> FilterUpcomingBirthdays { get; set; }
         private FacebookAppManager()
         {
@@ -51,7 +52,13 @@ namespace FacebookAppLogic
                 m_LoggedInUser = value;
             }
         }
-
+        public List<Post> UserPostsList
+        {
+            get
+            {
+                return r_Posts;
+            }
+        }
 
         public string FetchPicture()
         {

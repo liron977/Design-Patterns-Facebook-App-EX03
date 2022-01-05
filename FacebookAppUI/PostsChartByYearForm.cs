@@ -1,13 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using FacebookAppLogic;
-
+using System.Collections.Generic;
+using FacebookWrapper.ObjectModel;
 
 namespace BasicFacebookFeatures
 {
     internal partial class PostsChartByYearForm : Form
     {
         private readonly PostRankFacade r_AppPostsFacade;
+      
 
 
         public const int k_Millennium = 2000;
@@ -25,12 +28,13 @@ namespace BasicFacebookFeatures
 
         private void displayedCommentsChartOrderedByYear()
         {
-            int currentYear = r_AppPostsFacade.GetCurrentYear();
-
-            for(int i = 1; i < currentYear; i++)
+            Dictionary<int, int> chartXY = r_AppPostsFacade.GetChartByYearXY();
+            foreach (KeyValuePair<int, int> xY in chartXY)
             {
-                commentsChart.Series["Posts"].Points.AddXY( i + k_Millennium,r_AppPostsFacade.GetUserPostsOrderedByYear(i));
+                commentsChart.Series["Posts"].Points.AddXY(xY.Key+2000, xY.Value);
             }
+
+            YearAveragePosts.Text = r_AppPostsFacade.GetChartByYearPostsAverage().ToString();
         }
     }
 }

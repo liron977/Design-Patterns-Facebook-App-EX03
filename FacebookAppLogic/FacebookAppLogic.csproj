@@ -38,6 +38,9 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ChartByMonthsLogic.cs" />
+    <Compile Include="ChartByYearLogic.cs" />
+    <Compile Include="ChartLogic.cs" />
     <Compile Include="ExtendMatchInfo.cs" />
     <Compile Include="FacebookAppManager.cs" />
     <Compile Include="FindMyMatchLogic.cs" />

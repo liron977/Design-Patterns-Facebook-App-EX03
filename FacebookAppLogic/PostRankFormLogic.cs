@@ -10,15 +10,18 @@ namespace FacebookAppLogic
         public const int k_CurrentYear = 22;
         public const int k_NumberOfMonths = 13;
         public const int k_Millennium = 2000;
-        public readonly List<Post>[] r_UserPostsOrderedByMonth = new List<Post>[13];
-        public readonly List<Post>[] r_UserPostsOrderedByYear = new List<Post>[k_CurrentYear];
+     //   private readonly List<Post> r_Posts=new List<Post>();
+        /*public readonly List<Post>[] r_UserPostsOrderedByMonth = new List<Post>[13];
+        public readonly List<Post>[] r_UserPostsOrderedByYear = new List<Post>[k_CurrentYear];*/
 
         public PostRankFormLogic()
         {
+            
             r_UserPosts = new Dictionary<Post, int>();
+           // InitPostsList();
         }
 
-        public void InitUserPostsOrderedByMonthList()
+       /* public void InitUserPostsOrderedByMonthList()
         {
             for(int i = 0; i < k_NumberOfMonths; i++)
             {
@@ -32,7 +35,7 @@ namespace FacebookAppLogic
             {
                 r_UserPostsOrderedByYear[i] = new List<Post>();
             }
-        }
+        }*/
 
         public int CurrentYear
         {
@@ -55,20 +58,14 @@ namespace FacebookAppLogic
                 return r_UserPosts;
             }
         }
-        public List<Post>[] UserPostsOrderedByMonth
+       
+      /*  public List<Post> UserPostsList
         {
             get
             {
-                return r_UserPostsOrderedByMonth;
+                return r_Posts;
             }
-        }
-        public List<Post>[] UserPostsOrderedByYear
-        {
-            get
-            {
-                return r_UserPostsOrderedByYear;
-            }
-        }
+        }*/
 
         public void InitPostsList()
         {
@@ -79,11 +76,12 @@ namespace FacebookAppLogic
             {
                 try
                 {
+                    r_AppManager.UserPostsList.Add(userPosts);
                     r_UserPosts.Add(userPosts, postCommentCounter(userPosts));
-                    postCreatedMonth = userPosts.CreatedTime.Value.Month;
-                    postCreatedYear = userPosts.CreatedTime.Value.Year;
-                    r_UserPostsOrderedByMonth[postCreatedMonth].Add(userPosts);
-                    r_UserPostsOrderedByYear[postCreatedYear - k_Millennium].Add(userPosts);
+                   /* postCreatedMonth = userPosts.CreatedTime.Value.Month;
+                    postCreatedYear = userPosts.CreatedTime.Value.Year;*/
+                    /*r_UserPostsOrderedByMonth[postCreatedMonth].Add(userPosts);
+                    r_UserPostsOrderedByYear[postCreatedYear - k_Millennium].Add(userPosts);*/
                 }
                 catch
                 {
