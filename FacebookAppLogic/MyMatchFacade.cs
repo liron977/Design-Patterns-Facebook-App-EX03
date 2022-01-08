@@ -7,9 +7,9 @@ namespace FacebookAppLogic
     {
         private readonly FindMyMatchLogic r_FindMyMatchLogic = new FindMyMatchLogic();
 
-        public void FilterMyMatch(int i_FromAge, int i_ToAge, User.eGender i_Gender)
+        public List<FriendLogic> FilterMyMatch(int i_FromAge, int i_ToAge, User.eGender i_Gender)
         {
-            r_FindMyMatchLogic.FilterMyMatch(i_FromAge, i_ToAge, i_Gender);
+            return r_FindMyMatchLogic.FilterMyMatch(i_FromAge, i_ToAge, i_Gender);
         }
 
         public List<FriendLogic> GetMyMatches()

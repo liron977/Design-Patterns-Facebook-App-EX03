@@ -32,7 +32,8 @@ namespace BasicFacebookFeatures
         private void getUserSelectionAndContinue()
         {
             User.eGender genderSelection;
-            if(femaleRadioButton.Checked)
+           
+            if (femaleRadioButton.Checked)
             {
                 genderSelection = User.eGender.female;
             }
@@ -41,12 +42,11 @@ namespace BasicFacebookFeatures
                 genderSelection = User.eGender.male;
             }
 
-            r_MyMatchFacade.FilterMyMatch(
-                int.Parse(FromNumericUpDown.Value.ToString()),
-                int.Parse(ToNumericUpDown.Value.ToString()),
-                genderSelection);
             FindMyMatchForm findMyMatchForm = new FindMyMatchForm(
-                r_MyMatchFacade.GetMyMatches(),
+                r_MyMatchFacade.FilterMyMatch(
+                    int.Parse(FromNumericUpDown.Value.ToString()),
+                    int.Parse(ToNumericUpDown.Value.ToString()),
+                    genderSelection),
                 m_PresentationDetailsType);
             this.Close();
             findMyMatchForm.Show();

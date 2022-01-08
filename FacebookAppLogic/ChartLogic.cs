@@ -16,7 +16,6 @@ namespace FacebookAppLogic
             r_MaxNumOfX = MaxNumberOfX();
             r_UserPostsOrdered = new List<Post>[r_MaxNumOfX];
             InitDataList();
-            m_PostAverage = fillInChart();
         }
 
 
@@ -60,7 +59,7 @@ namespace FacebookAppLogic
 
         protected abstract int MaxNumberOfX();
 
-        private float fillInChart()
+        public Dictionary<int, int> FillInChart()
         {
             int numberOfX = MaxNumberOfX();
             int jumpsBetweenEachX = JumpsBetweenEachX();
@@ -69,7 +68,8 @@ namespace FacebookAppLogic
                 r_ChartXy.Add(i, r_UserPostsOrdered[i].Count);
             }
 
-            return AverageOfPosts();
+            m_PostAverage = AverageOfPosts();
+            return r_ChartXy;
         }
     }
 }

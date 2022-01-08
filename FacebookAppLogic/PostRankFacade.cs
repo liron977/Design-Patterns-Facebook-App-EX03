@@ -23,12 +23,12 @@ namespace FacebookAppLogic
 
         public Dictionary<int, int> GetChartByMonthsXY()
         {
-            return m_ChartByMonths.ChartXY;
+            return m_ChartByMonths.FillInChart();
         }
 
         public Dictionary<int, int> GetChartByYearXY()
         {
-            return m_ChartByYear.ChartXY;
+            return m_ChartByYear.FillInChart();
         }
 
         public float GetChartByYearPostsAverage()

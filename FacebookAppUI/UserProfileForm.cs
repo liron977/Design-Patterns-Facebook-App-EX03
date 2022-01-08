@@ -53,8 +53,7 @@ namespace BasicFacebookFeatures
             {
                 MessageBox.Show(
                     (string.Format(
-                            $@"No friend in birth year: {m_RangeDaysUpcomingBirthdays} using this app. 
-This is the time to enlarge the friends in this age")));
+                            $@"No friends having birthday in the next {m_RangeDaysUpcomingBirthdays} days using this app.")));
             }
         }
 
