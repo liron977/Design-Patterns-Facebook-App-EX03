@@ -10,6 +10,8 @@ namespace FacebookAppLogic
         private readonly int r_MaxNumOfX;
         public readonly List<Post>[] r_UserPostsOrdered;
         public float m_PostAverage;
+        private bool m_CharChosen=false;
+
 
         protected ChartLogic()
         {
@@ -63,12 +65,18 @@ namespace FacebookAppLogic
         {
             int numberOfX = MaxNumberOfX();
             int jumpsBetweenEachX = JumpsBetweenEachX();
-            for(int i = MinimumNumberOfX(); i < numberOfX; i = i + jumpsBetweenEachX)
+            if(!m_CharChosen)
             {
-                r_ChartXy.Add(i, r_UserPostsOrdered[i].Count);
+                for(int i = MinimumNumberOfX(); i < numberOfX; i = i + jumpsBetweenEachX)
+                {
+                    r_ChartXy.Add(i, r_UserPostsOrdered[i].Count);
+                }
+
+                m_CharChosen = true;
+
+                m_PostAverage = AverageOfPosts();
             }
 
-            m_PostAverage = AverageOfPosts();
             return r_ChartXy;
         }
     }
